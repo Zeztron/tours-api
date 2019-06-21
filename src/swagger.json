@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Node App",
+        "description": "This is a node app"
+    },
+    "servers": {
+        "url": "/",
+        "description": "Local Dev"  
+    },
+    "tags": [
+        {
+            "name": "Tours",
+            "description": "API for Tours in the system"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tours": {
+            "get": {
+                "tags": [
+                    "Tours"
+                ],
+                "summary": "Get all tours in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tours": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "tourTitle": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

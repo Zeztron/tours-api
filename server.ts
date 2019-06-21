@@ -1,4 +1,6 @@
 import express from "express";
+import swaggerUI from 'swagger-ui-express';
+import * as swaggerDocument from './src/swagger.json';
 const app = express();
 
 import { apiGetTours } from './api/tours/apiGetTours';
@@ -12,4 +14,12 @@ app.get("/tours", apiGetTours);
 
 app.get("/tours/:id", apiGetTourDetail);
 
-app.listen(process.env.PORT || 8091, () => {console.log("Server started...")});
+app.use(
+  "/swagger",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocument)
+);
+
+app.listen(process.env.PORT || 5500, () => {
+    console.log("Server started...");
+});
