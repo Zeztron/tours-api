@@ -1,14 +1,12 @@
 {
-    "openapi": "3.0.0",
+    "swagger": "2.0",
     "info": {
         "version": "1.0.0",
         "title": "Node App",
         "description": "This is a node app"
     },
-    "servers": {
-        "url": "/",
-        "description": "Local Dev"  
-    },
+    "host": "localhost:5500",
+    "basePath": "/",
     "tags": [
         {
             "name": "Tours",
@@ -32,7 +30,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/id"
+                            "$ref": "#/definitions/Tours"
                         }
                     },
                     "400": {
@@ -40,16 +38,50 @@
                     }
                 }
             }
+        },
+        "/tours/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the tour we want to match",
+                    "type": "string"
+                }
+                
+            ],
+            "get": {
+                "tags": [
+                    "Tour"
+                ],
+                "summary": "Get tour with given ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Tour with id",
+                        "schema": {
+                            "$ref": "#/definitions/Tours"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Tours"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Tour not found."
+                    }
+                }
+
+            }
         }
     },
     "definitions": {
-        "id": {
-            "properties": {
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
         "Tours": {
             "type": "object",
             "properties": {
