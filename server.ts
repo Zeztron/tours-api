@@ -7,6 +7,7 @@ const jsonParser = bodyParser.json();
 
 import { apiGetTours } from './api/tours/apiGetTours';
 import { apiGetTourDetail } from './api/tours/apiGetTourDetail';
+import { apiCreateTour } from './api/tours/apiCreateTour'; 
 
 app.get("/", (req, res, next) => {
     res.send('TourBooking API')
